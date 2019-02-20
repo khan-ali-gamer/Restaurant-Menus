@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body
+        {
+            width: 600px;
+            margin:10px auto;
+            
+            border: 2px solid black;
+            border-radius: 25px;
+        }
+        body h1
+        {
+        	text-align: center;
+        	margin-top: 0px;
+        }
+        .names a li
+        {
+            list-style: none;
+            color: black;
+
+        }
+        .table
+        {
+        	display: none;
+        }
+        .del
+        {
+        	display: none;
+        }
+		.bottom:hover
+		{
+			text-decoration:underline;
+		}
+		@media only screen and (max-width: 1000px) and (min-width: 200px) {
+  			body
+  			{
+  				width: 97%;
+  				font-size: 115%;
+  			}
+  			button
+  			{
+  				display: block;
+  				margin: 5px auto;
+  				width: 100%;
+  				font-size: 110%;
+  			}
+  			.bottom
+  			{
+  				font-size: 110%
+  			}
+  			.del form p,input
+  			{
+  				font-size: 110%;
+  				width: 97%;
+  			}
+  			.table form p,input
+  			{
+  				font-size: 110%;
+  				width: 97%;
+  				
+  			}
+  			/*.del form p
+  			{
+  				margin:25px 0px;
+  				
+  			}
+  			.table form p
+  			{
+  				margin:25px 0px;
+  				
+  				
+  			}*/
+  		}
+    </style>
+</head>
+<body>
+    <h1>Restuarants</h1>
+    <ul class="names">
+        {% for i in items %}
+        <a href="restaurants/{{i.id}}/" style="text-decoration: none;">
+        	<li>
+	        	<h3 style="font-weight: 500; padding: 0px; margin: 0px;">{{i.id}}) {{i.name}}</h3>
+	        	<p style="font-style: italic; float: left; font-size: 16.5px; margin: 0px 10px;">{{i.address}}</p> 
+	        	<p style="font-family: cursive; float: left; font-size: 14px; margin: 0px 10px;">{{i.phone_no}}</p>
+	        	<div style="clear: both;"></div>
+        	</li>
+    	</a>
+        {% endfor %}
+    </ul>
+	<div style="margin: auto; width: 300px;">
+		<div style="margin-bottom: 10px;">
+			<button onclick="Table()" style="margin-right: 10px;">Add Restaurant</button>
+			<button onclick="Delete()">Delete Restaurant</button>
+		</div>
+		<div class="del">
+			<form action="/Del" method="post">
+				<p>Name:</p>
+				<input type="text" name="name" style="display: block; margin: auto;">
+				<input type="submit" name="submit" value="Delete" style="display: block; margin: 10px auto;">
+			</form>
+		</div>
+		<div class="table">
+			<form action="/Home" method="post">
+				<p>Name:</p><input type="text" name="name">
+				<p>Address:</p><input type="text" name="address">
+				<p>Phone Number:</p><input type="text" name="phone_no">
+				<input type="submit" name="submit" style="display: block; margin: 10px auto;">
+			</form>
+		</div>
+		<div style="text-align: center;">
+			<h4 class="bottom"><a href="{{url_for('HelloWorld')}}" style="color: black; text-decoration: none;">Home</a></h4>
+		</div>
+		
+	</div>
+
+
+
+	<script type="text/javascript">
+		function Table()
+		{
+			document.querySelector(".table").style.display="block";
+			document.querySelector(".del").style.display="none";
+
+		}
+		function Delete()
+		{
+			document.querySelector(".del").style.display="block";
+			document.querySelector(".table").style.display="none";
+
+		}
+	</script>
+</body>
+</html>
