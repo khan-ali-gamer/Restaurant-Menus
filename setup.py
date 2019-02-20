@@ -82,5 +82,3 @@ def del_item(restaurant_id):
     item = session.query(Menu).filter_by(restaurant_id=restaurant_id).all()
     return render_template('MenuItem.html', items=item, id=restaurant_id)
 
-if __name__=='__main__':
-    app.run()
